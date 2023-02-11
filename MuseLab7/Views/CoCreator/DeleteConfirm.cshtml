@@ -1,0 +1,13 @@
+﻿@model MuseLab7.Models.CoCreatorDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this CoCreator?</h2>
+<a href="/CoCreator/List">Cancel</a>
+<h2>@Model.CoCreatorName</h2>
+<div>Bio/Genre: @Model.CoCreatorBio</div>
+
+<form action="/CoCreator/Delete/@Model.CoCreatorID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

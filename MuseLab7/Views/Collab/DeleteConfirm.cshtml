@@ -1,0 +1,15 @@
+﻿@model MuseLab7.Models.CollabDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Collab?</h2>
+<a href="/Collab/List">Cancel</a>
+<h2>@Model.CollabTitle</h2>
+<div>CoCreater: @Model.CoCreatorName</div>
+<div>Description: @Model.CollabDescription</div>
+<div>Parent Idea: @Model.IdeaTitle</div>
+<form action="/Collab/Delete/@Model.CollabID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

@@ -1,0 +1,24 @@
+﻿@model MuseLab7.Models.CreatorDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+<a href="/Creator/list">Go back to Creators</a>
+<h2>Update Creator</h2>
+<form action="/Creator/Update/@Model.CreatorID" method="POST">
+    <div style="display:none;">
+
+        <input type="text" name="CreatorID" value="@Model.CreatorID" />
+    </div>
+    <div>
+        <label>Name: </label> <input type="text" name="CreatorName" value="@Model.CreatorName" />
+    </div>
+    <div>
+        <label>Bio/Genre: </label>
+        <input type="text" name="CreatorBio" value="@Model.CreatorBio" />
+        @*<textarea cols="25" rows="10" name="CreatorBio" value="@Model.CreatorBio">@Model.CreatorBio</textarea>*@
+    </div>
+    <div>
+        <input type="submit" value="Update Creator" />
+    </div>
+</form>

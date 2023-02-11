@@ -1,0 +1,43 @@
+﻿@model MuseLab7.Models.ViewModels.CreateCollab
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Collab</h2>
+<a href="/collab/list">Go back to Collabs</a>
+<form action="/Collab/Create" method="POST">
+    <div>
+        <label>Title:</label> <input type="text" name="CollabTitle" />
+    </div>
+    <div>
+        <label>Description:</label> <input type="text" name="CollabDescription" />
+    </div>
+ 
+    <div>
+        <label>CoCreator ID:</label>
+
+        <select name="CoCreatorID">
+            @foreach (var cocreator in Model.CoCreatorOptions)
+            {
+
+                <option value="@cocreator.CoCreatorID">@cocreator.CoCreatorName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Idea ID:</label>
+
+        <select name="IdeaID">
+            @foreach (var idea in Model.IdeaOptions)
+            {
+                <option value="@idea.IdeaID">@idea.IdeaTitle</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create Collab" />
+    </div>
+</form>
+
+

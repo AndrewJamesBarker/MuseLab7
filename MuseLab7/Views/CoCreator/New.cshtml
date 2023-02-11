@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MuseLab7.Models.CoCreatorDto>
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create CoCreator</h2>
+<a href="/cocreator/list">Go back to CoCreators</a>
+<form action="/CoCreator/Create" method="POST">
+    <div>
+        <label>Name: </label> <input type="text" name="CoCreatorName" />
+    </div>
+    <div>
+        <label>Bio/Genre: </label><br> <textarea cols="25" rows="10" name="CoCreatorBio" value="CoCreatorBio"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Add CoCreator" />
+    </div>
+</form>
+
+

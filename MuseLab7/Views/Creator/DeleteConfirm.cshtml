@@ -1,0 +1,13 @@
+﻿@model MuseLab7.Models.CreatorDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Creator?</h2>
+<a href="/Creator/List">Cancel</a>
+<h2>@Model.CreatorName</h2>
+<div>Bio: @Model.CreatorBio</div>
+
+<form action="/Creator/Delete/@Model.CreatorID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

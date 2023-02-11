@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MuseLab7.Models.CreatorDto>
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Creator</h2>
+<a href="/creator/list">Go back to Creators</a>
+<form action="/Creator/Create" method="POST">
+    <div>
+        <label>Name: </label> <input type="text" name="CreatorName" />
+    </div>
+    <div>
+        <label>Bio/Genre: </label><br> <textarea cols="25" rows="10" name="CreatorBio" value=""></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Add Creator" />
+    </div>
+</form>
+
+

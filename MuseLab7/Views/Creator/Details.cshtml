@@ -1,0 +1,14 @@
+﻿@model MuseLab7.Models.CreatorDto
+
+@{
+    ViewBag.Title = "Details";
+}
+<a href="/creator/list">Go back to Creators</a>
+<br />
+<a href="/creator/Edit/@Model.CreatorID">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Creator/DeleteConfirm/@Model.CreatorID">Delete</a>
+<h2>Creator</h2>
+<h2>@Model.CreatorName</h2>
+<div>CoCreater: @Model.CreatorBio</div>
+

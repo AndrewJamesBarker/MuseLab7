@@ -1,0 +1,33 @@
+﻿@model MuseLab7.Models.ViewModels.UpdateIdea
+
+@{
+    ViewBag.Title = "Edit";
+}
+<a href="/idea/list">Go back to Ideas</a>
+<h2>Update Idea</h2>
+<form action="/Idea/Update/@Model.SelectedIdea.IdeaID" method="POST">
+    <div style="display:none;">
+
+        <input type="text" name="IdeaID" value="@Model.SelectedIdea.IdeaID" />
+    </div>
+    <div>
+        <label>Title:</label> <input type="text" name="IdeaTitle" value="@Model.SelectedIdea.IdeaTitle" />
+    </div>
+    <div>
+        <label>Description:</label> <input type="text" name="IdeaDescription" value="@Model.SelectedIdea.IdeaDescription" />
+    </div>
+    <div>
+        <label>Creator ID:</label>
+
+        <select name="CreatorID">
+            @foreach (var creator in Model.CreatorOptions)
+            {
+                <option value="@creator.CreatorID">@creator.CreatorName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Idea" />
+    </div>
+</form>
+

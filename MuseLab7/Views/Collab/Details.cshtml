@@ -1,0 +1,29 @@
+﻿@model MuseLab7.Models.ViewModels.DetailsCollab
+
+@*@{
+        ViewBag.Title = "Details";
+    }
+
+    <a href="/Collab/List">Go back to list</a>
+    <h2>@Model.CollabTitle</h2>
+    <div>Collab Description: @Model.CollabDescription</div>
+    <div>Collab CoCreator: @Model.CoCreatorName</div>
+    <div>Parent Idea: @Model.IdeaTitle</div>*@
+
+@{
+    ViewBag.Title = "Details";
+}
+<a href="/collab/list">Go back to Collabs</a>
+<br />
+<a href="/collab/Edit/@Model.SelectedCollab.CollabID">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Collab/DeleteConfirm/@Model.SelectedCollab.CollabID">Delete</a>
+<h2>Collab</h2>
+<h2>@Model.SelectedCollab.CollabTitle</h2>
+<div>CoCreater: @Model.SelectedCollab.CoCreatorName</div>
+<div>Description: @Model.SelectedCollab.CollabDescription</div>
+<div>Parent Idea: @Model.SelectedCollab.IdeaTitle</div>
+
+
+
+

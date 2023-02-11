@@ -1,0 +1,14 @@
+﻿@model MuseLab7.Models.IdeaDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Idea?</h2>
+<a href="/Idea/List">Cancel</a>
+<h2>@Model.IdeaTitle</h2>
+<div>Creater: @Model.CreatorName</div>
+<div>Description: @Model.IdeaDescription</div>
+<div>Parent Idea: @Model.IdeaTitle</div>
+<form action="/Idea/Delete/@Model.IdeaID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

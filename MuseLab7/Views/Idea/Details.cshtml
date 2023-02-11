@@ -1,0 +1,15 @@
+﻿@model MuseLab7.Models.ViewModels.DetailsIdea
+
+@{
+    ViewBag.Title = "Details";
+}
+<a href="/idea/list">Go back to Ideas</a>
+<br />
+<a href="/idea/Edit/@Model.SelectedIdea.IdeaID">Update</a>
+<br />
+<a style="color:#ab2020;" href="/idea/DeleteConfirm/@Model.SelectedIdea.IdeaID">Delete</a>
+<h2>Idea</h2>
+<h2>@Model.SelectedIdea.IdeaTitle</h2>
+<div>Creater: @Model.SelectedIdea.CreatorName</div>
+<div>Description: @Model.SelectedIdea.IdeaDescription</div>
+

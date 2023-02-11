@@ -1,0 +1,32 @@
+﻿@model MuseLab7.Models.ViewModels.CreateIdea
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Idea</h2>
+<a href="/idea/list">Go back to Ideas</a>
+<form action="/Idea/Create" method="POST">
+    <div>
+        <label>Title:</label> <input type="text" name="IdeaTitle" />
+    </div>
+    <div>
+        <label>Description:</label> <input type="text" name="IdeaDescription" />
+    </div>
+    <div>
+        <label>Creator:</label>
+        <select name="CreatorID">
+            @foreach (var creator in Model.CreatorOptions)
+            {
+                <option value="@creator.CreatorID">@creator.CreatorName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Idea" />
+    </div>
+</form>
+
+
+

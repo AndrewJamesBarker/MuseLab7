@@ -1,0 +1,43 @@
+﻿@model MuseLab7.Models.ViewModels.UpdateCollab
+
+@{
+    ViewBag.Title = "Edit";
+}
+<a href="/collab/list">Go back to Collabs</a>
+<h2>Update Collab</h2>
+<form action="/Collab/Update/@Model.SelectedCollab.CollabID" method="POST">
+    <div style="display:none;">
+        @* Pass through the collab ID *@
+        <input type="text" name="CollabID" value="@Model.SelectedCollab.CollabID" />
+    </div>
+    <div>
+        <label>Title:</label> <input type="text" name="CollabTitle" value="@Model.SelectedCollab.CollabTitle" />
+    </div>
+    <div>
+        <label>Description:</label> <input type="text" name="CollabDescription" value="@Model.SelectedCollab.CollabDescription" />
+    </div>
+    <div>
+        <label>CoCreator ID:</label>
+
+        <select name="CoCreatorID">
+            @foreach (var cocreator in Model.CoCreatorOptions)
+            {
+              
+                <option value="@cocreator.CoCreatorID">@cocreator.CoCreatorName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Idea ID:</label>
+
+        <select name="IdeaID">
+            @foreach (var idea in Model.IdeaOptions)
+            {
+                <option value="@idea.IdeaID">@idea.IdeaTitle</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Collab" />
+    </div>
+</form>

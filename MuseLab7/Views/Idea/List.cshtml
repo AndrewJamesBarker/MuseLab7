@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MuseLab7.Models.IdeaDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Ideas</h2>
+<a href="/Idea/New">New Idea</a>
+@foreach (var idea in Model)
+{
+    <h2><a href="/Idea/Details/@idea.IdeaID">@idea.IdeaTitle</a></h2>
+    <div>Creater: @idea.CreatorName</div>
+    <div>Description: @idea.IdeaDescription</div>
+    
+}
+

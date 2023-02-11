@@ -1,0 +1,23 @@
+﻿@model MuseLab7.Models.CoCreatorDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+<a href="/CoCreator/list">Go back to CoCreators</a>
+<h2>Update CoCreator</h2>
+<form action="/CoCreator/Update/@Model.CoCreatorID" method="POST">
+    <div style="display:none;">
+
+        <input type="text" name="CreatorID" value="@Model.CoCreatorID" />
+    </div>
+    <div>
+        <label>Name: </label> <input type="text" name="CoCreatorName" value="@Model.CoCreatorName" />
+    </div>
+    <div>
+        <label>Bio/Genre:  </label> <input type="text" name="CoCreatorBio" value="@Model.CoCreatorBio" />
+        @*<label>Bio/Genre: </label><br> <textarea cols="25" rows="10" name="CoCreatorBio" value="@Model.CoCreatorBio"></textarea>*@
+    </div>
+    <div>
+        <input type="submit" value="Update CoCreator" />
+    </div>
+</form>
