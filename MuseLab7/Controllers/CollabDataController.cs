@@ -64,6 +64,33 @@ namespace MuseLab7.Controllers
             return Ok(CollabDto);
         }
 
+        /// <summary>
+        /// gathers info on all collabs related to a specific idea id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// all collabs in the database by their associated idea matched by id
+        /// </returns>
+        // GET: api/CollabData/findcollab/5
+
+        [HttpGet]
+        [ResponseType(typeof(CollabDto))]
+        public IHttpActionResult ListCollabsForIdea(int id)
+        {
+            List<Collab> Collabs = db.Collabs.Where(c => c.IdeaID == id).ToList();
+            List<CollabDto> CollabDtos = new List<CollabDto>();
+
+            Collabs.ForEach(c => CollabDtos.Add(new CollabDto()
+            {
+                CollabID = c.CollabID,
+                CollabTitle = c.CollabTitle,
+                CollabDescription = c.CollabDescription,
+                CoCreatorID = c.CoCreator.CoCreatorID,
+                CoCreatorName = c.CoCreator.CoCreatorName
+            }));
+
+            return Ok(CollabDtos);
+        }
 
         /// <summary>
         /// gathers info on all collabs related to a specific creator id

@@ -21,6 +21,7 @@ namespace MuseLab7.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44350/api/");
         }
+
         // GET: Idea/List
         public ActionResult List()
         {
@@ -51,6 +52,15 @@ namespace MuseLab7.Controllers
             IdeaDto SelectedIdea = response.Content.ReadAsAsync<IdeaDto>().Result;
 
             ViewModel.SelectedIdea = SelectedIdea;
+
+            //showcase information about collabs related to this idea
+            //send a request to gather information about collabs related to a particular idea ID
+            url = "collabdata/listcollabsforidea/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<CollabDto> RelatedCollabs = response.Content.ReadAsAsync<IEnumerable<CollabDto>>().Result;
+
+            ViewModel.RelatedCollabs = RelatedCollabs;
+
 
             return View(ViewModel);
         }

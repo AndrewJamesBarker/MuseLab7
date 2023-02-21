@@ -11,7 +11,16 @@
 <h2>Idea</h2>
 <h2>@Model.SelectedIdea.IdeaTitle</h2>
 <div>Creater: @Model.SelectedIdea.CreatorName</div>
-<div>Description: @Model.SelectedIdea.IdeaDescription</div
+<div>Description: @Model.SelectedIdea.IdeaDescription</div>
 
 
+<div>
+    <h3>@(Model.SelectedIdea.IdeaTitle)'s Collabs</h3>
+    @foreach (var collab in Model.RelatedCollabs)
+    {
+        <p>
+            <a href="/Collab/Details/@collab.CollabID">@collab.CollabTitle</a>
+        </p>
 
+    }
+</div>

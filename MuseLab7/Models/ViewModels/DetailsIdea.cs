@@ -9,7 +9,7 @@ namespace MuseLab7.Models.ViewModels
     public class DetailsIdea
     {
         public IdeaDto SelectedIdea { get; set; }
-        //public IEnumerable<CollabDto> RelatedCollabs { get; set; }
+        public IEnumerable<CollabDto> RelatedCollabs { get; set; }
 
 
     }

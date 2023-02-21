@@ -94,7 +94,7 @@ namespace MuseLab7.Controllers
         public ActionResult Create(Creator creator)
         {
 
-            // create new instance of a cocreator
+            // create new instance of a creator
             string url = "creatordata/addcreator";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
