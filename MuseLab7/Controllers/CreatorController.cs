@@ -22,7 +22,10 @@ namespace MuseLab7.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44350/api/");
         }
+
+
         // GET: Creator/List
+
         public ActionResult List()
         {
             //communicate with the collab data api to retrieve a list of collabs
@@ -40,20 +43,38 @@ namespace MuseLab7.Controllers
             return View(Creators);
         }
 
+        
+
+
         // GET: Creator/Details/5
         public ActionResult Details(int id)
         {
+            
+            DetailsCreator ViewModel = new DetailsCreator();
 
             string url = "creatordata/findcreator/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            //DetailsCreator ViewModel = new DetailsCreator();
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
 
-            CreatorDto selectedcreator = response.Content.ReadAsAsync<CreatorDto>().Result;
+            CreatorDto SelectedCreator = response.Content.ReadAsAsync<CreatorDto>().Result;
+            
+            ViewModel.SelectedCreator = SelectedCreator;
+
+            //showcase information about ideas related to this creator
+            //send a request to gather information about ideas related to a particular creator ID
+            url = "ideadata/listideasforcreator/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<IdeaDto> RelatedIdeas = response.Content.ReadAsAsync<IEnumerable<IdeaDto>>().Result;
+
+            ViewModel.RelatedIdeas = RelatedIdeas;
 
 
-            return View(selectedcreator);
+            return View(ViewModel);
         }
+
+
         // Error response
         public ActionResult Error()
         {

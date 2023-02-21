@@ -224,7 +224,9 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\CreateCollab.cs" />
     <Compile Include="Models\ViewModels\CreateIdea.cs" />
+    <Compile Include="Models\ViewModels\DetailsCoCreator.cs" />
     <Compile Include="Models\ViewModels\DetailsCollab.cs" />
+    <Compile Include="Models\ViewModels\DetailsCreator.cs" />
     <Compile Include="Models\ViewModels\DetailsIdea.cs" />
     <Compile Include="Models\ViewModels\UpdateCollab.cs" />
     <Compile Include="Models\ViewModels\UpdateIdea.cs" />

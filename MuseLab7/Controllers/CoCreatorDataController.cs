@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using MuseLab7.Models;
+using System.Diagnostics;
 
 namespace MuseLab7.Controllers
 {
@@ -16,7 +17,7 @@ namespace MuseLab7.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CoCreatorsData/ListCoCreators
+        // GET: api/CoCreatorData/ListCoCreators
         [HttpGet]
         public IEnumerable<CoCreatorDto> ListCoCreators()
         {
@@ -32,7 +33,7 @@ namespace MuseLab7.Controllers
             return CoCreatorDtos;
         }
 
-        // GET: api/CoCreatorsData/findCoCreator/5
+        // GET: api/CoCreatorData/findCoCreator/5
         [ResponseType(typeof(CoCreatorDto))]
         [HttpGet]
         public IHttpActionResult FindCoCreator(int id)
@@ -53,7 +54,7 @@ namespace MuseLab7.Controllers
         }
 
 
-    // Post: api/CoCreatorsData/updateCoCreator/5
+        // Post: api/CoCreatorData/updateCoCreator/5
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateCoCreator(int id, CoCreator CoCreator)
@@ -89,7 +90,7 @@ namespace MuseLab7.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CoCreatorsData/addCoCreator
+        // POST: api/CoCreatorData/addCoCreator
         [ResponseType(typeof(CoCreator))]
         [HttpPost]
         public IHttpActionResult AddCoCreator(CoCreator CoCreator)
@@ -105,7 +106,7 @@ namespace MuseLab7.Controllers
             return CreatedAtRoute("DefaultApi", new { id = CoCreator.CoCreatorID }, CoCreator);
         }
 
-        // DELETE: api/CoCreatorsData/DeleteCoCreator/5
+        // DELETE: api/CoCreatorData/DeleteCoCreator/5
         [ResponseType(typeof(CoCreator))]
         [HttpPost]
         public IHttpActionResult DeleteCoCreator(int id)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,7 +20,8 @@ namespace MuseLab7.Controllers
 
         // GET: api/IdeaData/listideas
         [HttpGet]
-        public IEnumerable<IdeaDto> ListIdeas()
+        [ResponseType(typeof(IdeaDto))]
+        public IHttpActionResult ListIdeas()
         {
             List<Idea> Ideas = db.Ideas.ToList();
             List<IdeaDto> IdeaDtos = new List<IdeaDto>();
@@ -28,12 +31,17 @@ namespace MuseLab7.Controllers
                 IdeaID = i.IdeaID,
                 IdeaTitle = i.IdeaTitle,
                 IdeaDescription = i.IdeaDescription,
-                //CreatorID = i.Creator.CreatorID,
+                CreatorID = i.Creator.CreatorID,
                 CreatorName = i.Creator.CreatorName
             }));
-            return IdeaDtos;
+            return Ok(IdeaDtos);
         }
 
+        /// <summary>
+        /// finds an idea based on id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>returns a specific idea by id</returns>
         // GET: api/IdeaData/findidea/5
         [ResponseType(typeof(Idea))]
         [HttpGet]
@@ -54,6 +62,34 @@ namespace MuseLab7.Controllers
             }
 
             return Ok(IdeaDto);
+        }
+
+        /// <summary>
+        /// gathers info on all ideas related to a specific creator id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// all ideas in the database by their associated creators matched by id
+        /// </returns>
+        // GET: api/IdeaData/findidea/5
+
+        [HttpGet]
+        [ResponseType(typeof(IdeaDto))]
+        public IHttpActionResult ListIdeasForCreator(int id)
+        {
+            List<Idea> Ideas = db.Ideas.Where(i=>i.CreatorID ==id).ToList();
+            List<IdeaDto> IdeaDtos = new List<IdeaDto>();
+
+            Ideas.ForEach(i => IdeaDtos.Add(new IdeaDto()
+            {
+                IdeaID = i.IdeaID,
+                IdeaTitle = i.IdeaTitle,
+                IdeaDescription = i.IdeaDescription,
+                CreatorID = i.Creator.CreatorID,
+                CreatorName = i.Creator.CreatorName
+            }));
+
+            return Ok(IdeaDtos);
         }
 
         // PUT: api/IdeaData/updateidea/5

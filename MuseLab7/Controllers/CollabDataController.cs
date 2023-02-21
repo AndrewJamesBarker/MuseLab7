@@ -65,6 +65,35 @@ namespace MuseLab7.Controllers
         }
 
 
+        /// <summary>
+        /// gathers info on all collabs related to a specific creator id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// all collabs in the database by their associated cocreators matched by id
+        /// </returns>
+        // GET: api/IdeaData/findcollab/5
+
+        [HttpGet]
+        [ResponseType(typeof(CollabDto))]
+        public IHttpActionResult ListCollabsForCoCreator(int id)
+        {
+            List<Collab> Collabs = db.Collabs.Where(c => c.CoCreatorID == id).ToList();
+            List<CollabDto> CollabDtos = new List<CollabDto>();
+
+            Collabs.ForEach(c => CollabDtos.Add(new CollabDto()
+            {
+                CollabID = c.CollabID,
+                CollabTitle = c.CollabTitle,
+                CollabDescription = c.CollabDescription,
+                CoCreatorID = c.CoCreator.CoCreatorID,
+                CoCreatorName = c.CoCreator.CoCreatorName
+            }));
+
+            return Ok(CollabDtos);
+        }
+
+
         // updates a collab with post input
         //param name="id" represent a collabs primary key
         //param name="collab" json form data

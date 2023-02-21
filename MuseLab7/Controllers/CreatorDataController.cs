@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using MuseLab7.Models;
+using System.Diagnostics;
 
 namespace MuseLab7.Controllers
 {
@@ -16,6 +17,12 @@ namespace MuseLab7.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// returns all creators in the system
+        /// </summary>
+        /// <returns>
+        /// all creators, including associated ideas
+        /// </returns>
         // GET: api/CreatorData/ListCreators
         [HttpGet]
         public IEnumerable<CreatorDto> ListCreators()
@@ -32,6 +39,14 @@ namespace MuseLab7.Controllers
             return CreatorDtos;
         }
 
+
+        /// <summary>
+        /// finds specific creator in the system
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// a creator in the system matching the requested id
+        /// </returns>
         // GET: api/CreatorData/FindCreator/5
         [ResponseType(typeof(Creator))]
         [HttpGet]
@@ -52,6 +67,12 @@ namespace MuseLab7.Controllers
             return Ok(CreatorDto);
         }
 
+        /// <summary>
+        /// updates a specific creator in the system
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Creator"></param>
+        /// <returns></returns>
         // Post: api/CreatorData/UpdateCreator/5
         [ResponseType(typeof(void))]
         [HttpPost]

@@ -1,14 +1,25 @@
-﻿@model MuseLab7.Models.CoCreatorDto
+﻿@model MuseLab7.Models.ViewModels.DetailsCoCreator
 
 @{
     ViewBag.Title = "Details";
 }
 <a href="/cocreator/list">Go back to CoCreators</a>
 <br />
-<a href="/cocreator/Edit/@Model.CoCreatorID">Update</a>
+<a href="/cocreator/Edit/@Model.SelectedCoCreator.CoCreatorID">Update</a>
 <br />
-<a style="color:#ab2020;" href="/CoCreator/DeleteConfirm/@Model.CoCreatorID">Delete</a>
+<a style="color:#ab2020;" href="/CoCreator/DeleteConfirm/@Model.SelectedCoCreator.CoCreatorID">Delete</a>
 <h2>CoCreator</h2>
-<h2>@Model.CoCreatorName</h2>
-<div>CoCreater: @Model.CoCreatorBio</div>
+<h2>@Model.SelectedCoCreator.CoCreatorName</h2>
+<div>CoCreater: @Model.SelectedCoCreator.CoCreatorBio</div>
+
+<div>
+    <h3>@(Model.SelectedCoCreator.CoCreatorName)'s Collabs</h3>
+    @foreach (var collab in Model.RelatedCollabs)
+    {
+        <p>
+            <a href="/Collab/Details/@collab.CollabID">@collab.CollabTitle</a>
+        </p>
+
+    }
+</div>
 

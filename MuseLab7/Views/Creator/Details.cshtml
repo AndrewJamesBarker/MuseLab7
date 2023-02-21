@@ -1,14 +1,26 @@
-﻿@model MuseLab7.Models.CreatorDto
+﻿@model MuseLab7.Models.ViewModels.DetailsCreator
 
 @{
     ViewBag.Title = "Details";
 }
 <a href="/creator/list">Go back to Creators</a>
 <br />
-<a href="/creator/Edit/@Model.CreatorID">Update</a>
+<a href="/creator/Edit/@Model.SelectedCreator.CreatorID">Update</a>
 <br />
-<a style="color:#ab2020;" href="/Creator/DeleteConfirm/@Model.CreatorID">Delete</a>
+<a style="color:#ab2020;" href="/Creator/DeleteConfirm/@Model.SelectedCreator.CreatorID">Delete</a>
 <h2>Creator</h2>
-<h2>@Model.CreatorName</h2>
-<div>CoCreater: @Model.CreatorBio</div>
+<h2>@Model.SelectedCreator.CreatorName</h2>
+<div>Creater Bio: @Model.SelectedCreator.CreatorBio</div>
+
+<div>
+    <h3>@(Model.SelectedCreator.CreatorName)'s Ideas</h3>
+    @foreach (var idea in Model.RelatedIdeas)
+    {
+    <p>
+        <a href="/Idea/Details/@idea.IdeaID">@idea.IdeaTitle</a>
+    </p>
+        
+    }
+</div>
+
 

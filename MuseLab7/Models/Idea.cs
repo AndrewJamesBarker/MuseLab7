@@ -30,8 +30,8 @@ namespace MuseLab7.Models
         public string IdeaDescription { get; set; }
 
         // an idea belongs to a creator
-        //public int CreatorID { get; set; }
-        
+        public int CreatorID { get; set; }
+
         public string CreatorName { get; set; }
 
     }

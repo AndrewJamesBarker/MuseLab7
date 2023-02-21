@@ -22,6 +22,8 @@ namespace MuseLab7.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44350/api/");
         }
+
+
         // GET: CoCreator/List
         public ActionResult List()
         {
@@ -31,7 +33,7 @@ namespace MuseLab7.Controllers
             string url = "cocreatordata/listcocreators";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The response code is ");
+            
             Debug.WriteLine(response.StatusCode);
 
             IEnumerable<CoCreatorDto> CoCreators = response.Content.ReadAsAsync<IEnumerable<CoCreatorDto>>().Result;
@@ -43,19 +45,31 @@ namespace MuseLab7.Controllers
         // GET: CoCreator/Details/5
         public ActionResult Details(int id)
         {
-      
+            DetailsCoCreator ViewModel = new DetailsCoCreator();
+
             string url = "cocreatordata/findcocreator/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            //DetailsCoCreator ViewModel = new DetailsCoCreator();
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
 
-            CoCreatorDto selectedcocreator = response.Content.ReadAsAsync<CoCreatorDto>().Result;
+            CoCreatorDto SelectedCoCreator = response.Content.ReadAsAsync<CoCreatorDto>().Result;
+
+            ViewModel.SelectedCoCreator = SelectedCoCreator;
+
+            //showcase information about ideas related to this creator
+            //send a request to gather information about ideas related to a particular creator ID
+            url = "collabdata/listcollabsforcocreator/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<CollabDto> RelatedCollabs = response.Content.ReadAsAsync<IEnumerable<CollabDto>>().Result;
+
+            ViewModel.RelatedCollabs = RelatedCollabs;
 
 
-            //show associated CoCreators with this Collab
-
-            return View(selectedcocreator);
+            return View(ViewModel);
         }
+
+
         // Error response
         public ActionResult Error()
         {
@@ -104,7 +118,7 @@ namespace MuseLab7.Controllers
         // GET: CoCreator/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "cocreatordata/findcocreator/"+id;
+            string url = "cocreatordata/findcocreator/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CoCreatorDto selectedCoCreator = response.Content.ReadAsAsync<CoCreatorDto>().Result;
             return View(selectedCoCreator);
@@ -115,7 +129,7 @@ namespace MuseLab7.Controllers
         public ActionResult Update(int id, CoCreator cocreator)
         {
 
-            string url = "cocreatordata/updatecocreator/"+id;
+            string url = "cocreatordata/updatecocreator/" + id;
             string jsonpayload = jss.Serialize(cocreator);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -127,6 +141,7 @@ namespace MuseLab7.Controllers
             }
             else
             {
+                Debug.WriteLine("You made it this far... ");
                 return RedirectToAction("Error");
             }
         }

@@ -41,13 +41,16 @@ namespace MuseLab7.Controllers
         public ActionResult Details(int id)
         {
 
+            DetailsIdea ViewModel = new DetailsIdea();
+
             string url = "ideadata/findidea/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            DetailsIdea ViewModel = new DetailsIdea();
+       
 
-            IdeaDto selectedidea = response.Content.ReadAsAsync<IdeaDto>().Result;
-            ViewModel.SelectedIdea = selectedidea;
+            IdeaDto SelectedIdea = response.Content.ReadAsAsync<IdeaDto>().Result;
+
+            ViewModel.SelectedIdea = SelectedIdea;
 
             return View(ViewModel);
         }

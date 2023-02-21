@@ -35,6 +35,8 @@ namespace MuseLab7.Models
  
         public string IdeaTitle { get; set; }
 
+        public int CoCreatorID { get; set; }
+
         public string CoCreatorName { get; set; }
         
     }

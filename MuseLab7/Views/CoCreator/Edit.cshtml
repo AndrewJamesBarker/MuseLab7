@@ -8,14 +8,15 @@
 <form action="/CoCreator/Update/@Model.CoCreatorID" method="POST">
     <div style="display:none;">
 
-        <input type="text" name="CreatorID" value="@Model.CoCreatorID" />
+        <input type="text" name="CoCreatorID" value="@Model.CoCreatorID" />
     </div>
     <div>
         <label>Name: </label> <input type="text" name="CoCreatorName" value="@Model.CoCreatorName" />
     </div>
     <div>
-        <label>Bio/Genre:  </label> <input type="text" name="CoCreatorBio" value="@Model.CoCreatorBio" />
-        @*<label>Bio/Genre: </label><br> <textarea cols="25" rows="10" name="CoCreatorBio" value="@Model.CoCreatorBio"></textarea>*@
+        <label>Bio/Genre: </label>
+        <input type="text" name="CoCreatorBio" value="@Model.CoCreatorBio" />
+        @*<textarea cols="25" rows="10" name="CoCreatorBio" value="@Model.CoCreatorBio">@Model.CoCreatorBio</textarea>*@
     </div>
     <div>
         <input type="submit" value="Update CoCreator" />
