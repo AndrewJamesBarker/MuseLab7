@@ -8,15 +8,7 @@ namespace MuseLab7.Models.ViewModels
     public class CreateCollab
     {
 
-
-        // this view model is a class which stores info we need to present to /collab/update/{}
-
-        //the existing collab info
-
-        //public CollabDto SelectedCollab { get; set; }
-
         // all possible ideas to build a collab on
-
 
         public IEnumerable<IdeaDto> IdeaOptions { get; set; }
 

@@ -102,7 +102,8 @@ namespace MuseLab7.Controllers
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
-            client.PostAsync(url, content);
+
+            //client.PostAsync(url, content);
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)

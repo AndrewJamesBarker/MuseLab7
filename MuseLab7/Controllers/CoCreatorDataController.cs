@@ -90,6 +90,12 @@ namespace MuseLab7.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+        /// <summary>
+        /// adds a cocreator to the system
+        /// </summary>
+        /// <param name="CoCreator">jason data of cocreator</param>
+        /// <returns>cocreator id and data</returns>
         // POST: api/CoCreatorData/addCoCreator
         [ResponseType(typeof(CoCreator))]
         [HttpPost]
