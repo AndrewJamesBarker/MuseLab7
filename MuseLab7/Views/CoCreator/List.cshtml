@@ -5,8 +5,17 @@
 
 <h2>CoCreators</h2>
 <a href="/CoCreator/New">New CoCreator</a>
-@foreach (var cocreator in Model)
-{
-    <h2><a href="/CoCreator/Details/@cocreator.CoCreatorID">@cocreator.CoCreatorName</a></h2>
-    <div>Bio/Genre: @cocreator.CoCreatorBio</div>
-}
+
+<div class="flexContainer">
+    @foreach (var cocreator in Model)
+    {
+
+    <div class="listItem">
+        <h2><a href="/CoCreator/Details/@cocreator.CoCreatorID">@cocreator.CoCreatorName</a></h2>
+        <span>
+            <p class="boldText">Bio/Genre: </p><p>@cocreator.CoCreatorBio</p>
+        </span>
+    </div>
+    }
+</div>
+

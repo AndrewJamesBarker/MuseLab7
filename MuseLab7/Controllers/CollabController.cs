@@ -18,9 +18,46 @@ namespace MuseLab7.Controllers
 
         static CollabController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                UseCookies = false
+            };
+
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44350/api/");
         }
+
+        /// <summary>
+        /// Grabs the authentication cookie sent to this controller.
+        /// For proper WebAPI authentication, you can send a post request with login credentials to the WebAPI and log the access token from the response. 
+        /// The controller already knows this token, so we're just passing it up the chain.
+        /// 
+        /// Here is a descriptive article which walks through the process of setting up authorization/authentication directly.
+        /// https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/individual-accounts-in-web-api
+        /// </summary>
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            //HTTP client is set up to be reused, otherwise it will exhaust server resources.
+            //This is a bit dangerous because a previously authenticated cookie could be cached for
+            //a follow-up request from someone else. Reset cookies in HTTP client before grabbing a new one.
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            //collect token as it is submitted to the controller
+            //use it to pass along to the WebAPI.
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
+
         // GET: Collab/List
         public ActionResult List()
         {
@@ -69,9 +106,10 @@ namespace MuseLab7.Controllers
         }
 
         // GET: Collab/New
+        [Authorize]
         public ActionResult New()
         {
-
+            GetApplicationCookie();
             CreateCollab ViewModel = new CreateCollab();
 
             string url = "ideadata/listideas/";
@@ -94,8 +132,10 @@ namespace MuseLab7.Controllers
 
         // POST: Collab/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Collab collab)
         {
+            GetApplicationCookie();
             // create new instance of a collab
             string url = "collabdata/addcollab";
 
@@ -123,8 +163,10 @@ namespace MuseLab7.Controllers
         }
 
         // GET: Collab/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
+            GetApplicationCookie();
             UpdateCollab ViewModel = new UpdateCollab();
 
             //the existing collab info
@@ -156,8 +198,10 @@ namespace MuseLab7.Controllers
 
         // POST: Collab/Update/5
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Collab collab)
         {
+            GetApplicationCookie();
             string url = "collabdata/updatecollab/"+id;
             string jsonpayload = jss.Serialize(collab);
             HttpContent content = new StringContent(jsonpayload);
@@ -176,8 +220,10 @@ namespace MuseLab7.Controllers
         }
 
         // GET: Collab/Delete/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
+            GetApplicationCookie();
             string url = "collabdata/findCollab/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CollabDto selectedCollab = response.Content.ReadAsAsync<CollabDto>().Result;
@@ -186,8 +232,10 @@ namespace MuseLab7.Controllers
 
         // POST: Collab/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "collabdata/deletecollab/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

@@ -12,5 +12,7 @@ namespace MuseLab7.Models.ViewModels
         public IEnumerable<CoCreatorDto> CoCreators { get; set; }
         public IEnumerable<IdeaDto> Ideas { get; set; }
 
+        //public IdeaDto Idea { get; set; }
+
     }
 }

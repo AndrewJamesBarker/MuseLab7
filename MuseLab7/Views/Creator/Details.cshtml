@@ -8,19 +8,26 @@
 <a href="/creator/Edit/@Model.SelectedCreator.CreatorID">Update</a>
 <br />
 <a style="color:#ab2020;" href="/Creator/DeleteConfirm/@Model.SelectedCreator.CreatorID">Delete</a>
-<h2>Creator</h2>
-<h2>@Model.SelectedCreator.CreatorName</h2>
-<div>Creater Bio: @Model.SelectedCreator.CreatorBio</div>
+<h1 class="centerItem">Creator</h1>
 
-<div>
-    <h3>@(Model.SelectedCreator.CreatorName)'s Ideas</h3>
-    @foreach (var idea in Model.RelatedIdeas)
-    {
-    <p>
-        <a href="/Idea/Details/@idea.IdeaID">@idea.IdeaTitle</a>
-    </p>
-        
-    }
+<div class="flexContainer">
+
+    <div class="listItem">
+     
+        <h3>@Model.SelectedCreator.CreatorName</h3>
+        <div>@Model.SelectedCreator.CreatorBio</div>
+    </div>
+
+
+    <div class="listItem">
+        <h3>@(Model.SelectedCreator.CreatorName)'s Ideas</h3>
+        @foreach (var idea in Model.RelatedIdeas)
+        {
+            <p>
+                <a href="/Idea/Details/@idea.IdeaID">@idea.IdeaTitle</a>
+            </p>
+
+        }
+    </div>
 </div>
-
 

@@ -76,6 +76,7 @@ namespace MuseLab7.Controllers
         // Post: api/CreatorData/UpdateCreator/5
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateCreator(int id, Creator Creator)
         {
             if (!ModelState.IsValid)
@@ -112,6 +113,7 @@ namespace MuseLab7.Controllers
         // POST: api/CreatorData/AddCreator
         [ResponseType(typeof(Creator))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddCreator(Creator Creator)
         {
             if (!ModelState.IsValid)
@@ -128,6 +130,7 @@ namespace MuseLab7.Controllers
         // Post: api/CreatorData/DeleteCreator/5
         [ResponseType(typeof(Creator))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteCreator(int id)
         {
             Creator Creator = db.Creators.Find(id);

@@ -93,8 +93,15 @@ namespace MuseLab7.Controllers
         }
 
         // PUT: api/IdeaData/updateidea/5
+        /// <summary>
+        /// updates an idea in the db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Idea"></param>
+        /// <returns>updated idea</returns>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateIdea(int id, Idea Idea)
         {
             if (!ModelState.IsValid)
@@ -128,9 +135,15 @@ namespace MuseLab7.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// add an idea to the db
+        /// </summary>
+        /// <param name="Idea"></param>
+        /// <returns>a new idea into the db</returns>
         // POST: api/IdeaData/addidea
         [ResponseType(typeof(Idea))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddIdea(Idea Idea)
         {
             if (!ModelState.IsValid)
@@ -144,9 +157,15 @@ namespace MuseLab7.Controllers
             return CreatedAtRoute("DefaultApi", new { id = Idea.IdeaID }, Idea);
         }
 
+        /// <summary>
+        /// deletes an idea from the db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>to list after deleting idea by id</returns>
         // post: api/IdeaData/deleteidea/5
         [ResponseType(typeof(Idea))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteIdea(int id)
         {
             Idea Idea = db.Ideas.Find(id);
