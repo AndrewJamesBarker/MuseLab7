@@ -18,7 +18,12 @@ namespace MuseLab7.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // returns collabs in system
-        //
+        /// <summary>
+        /// returns all collabs in the system
+        /// </summary>
+        /// <returns>
+        /// all collabs in the db including their respective cocreators
+        /// </returns>
         // GET: api/CollabData/listcollabs
         [HttpGet]
         [ResponseType(typeof(CollabDto))]
@@ -39,8 +44,15 @@ namespace MuseLab7.Controllers
         }
 
 
-        // returns specific collab by id
+        // 
         //param name="id" collab primary key
+        /// <summary>
+        /// returns specific collab by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// returns specific collab by id and its cocreator and related parent idea
+        /// </returns>
         // GET: api/CollabData/findcollab/5
         [ResponseType(typeof(CollabDto))]
         [HttpGet]
@@ -52,6 +64,8 @@ namespace MuseLab7.Controllers
                 CollabID = Collab.CollabID,
                 CollabTitle = Collab.CollabTitle,
                 CollabDescription = Collab.CollabDescription,
+                IdeaID = Collab.Idea.IdeaID,
+
                 IdeaTitle = Collab.Idea.IdeaTitle,
                 CoCreatorName = Collab.CoCreator.CoCreatorName
 
@@ -129,6 +143,7 @@ namespace MuseLab7.Controllers
         // Post: api/CollabData/updatecollab/5
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateCollab(int id, Collab Collab)
         {
             if (!ModelState.IsValid)
@@ -166,6 +181,7 @@ namespace MuseLab7.Controllers
         // POST: api/CollabData/addcollab
         [ResponseType(typeof(Collab))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddCollab(Collab Collab)
         {
             if (!ModelState.IsValid)
@@ -182,6 +198,7 @@ namespace MuseLab7.Controllers
         // DELETE: api/CollabData/deletecollab/5
         [ResponseType(typeof(Collab))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteCollab(int id)
         {
             Collab Collab = db.Collabs.Find(id);

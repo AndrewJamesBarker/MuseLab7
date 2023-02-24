@@ -6,9 +6,16 @@
 <h2>Creators</h2>
 <a href="/Creator/New">New Creator</a>
 
-@foreach (var creator in Model)
-{
-    <h2><a href="/Creator/Details/@creator.CreatorID">@creator.CreatorName</a></h2>
-    <div>Bio/Genre:  @creator.CreatorBio</div>
-}
+<div class="flexContainer">
 
+    @foreach (var creator in Model)
+    {
+        <div class="listItem">
+            <h2><a href="/Creator/Details/@creator.CreatorID">@creator.CreatorName</a></h2>
+            <span>
+                <p class="boldText">Bio/Genre: </p><p>@creator.CreatorBio</p>
+            </span>
+        </div>
+    }
+
+</div>

@@ -33,6 +33,7 @@ namespace MuseLab7.Models
 
         public string CollabDescription { get; set; }
  
+        public int IdeaID { get; set; }
         public string IdeaTitle { get; set; }
 
         public int CoCreatorID { get; set; }

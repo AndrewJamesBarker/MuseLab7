@@ -17,6 +17,14 @@ namespace MuseLab7.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+        /// <summary>
+        /// returns cocreators in system
+        /// </summary>
+        /// <returns>
+        /// all cocreators in the system
+        /// </returns>
+    
         // GET: api/CoCreatorData/ListCoCreators
         [HttpGet]
         public IEnumerable<CoCreatorDto> ListCoCreators()
@@ -33,6 +41,14 @@ namespace MuseLab7.Controllers
             return CoCreatorDtos;
         }
 
+        /// <summary>
+        /// returns specific cocreator
+        /// </summary>
+        /// <param name="id"></param>
+        /// 
+        /// <returns>
+        /// returns specific cocreator by id
+        /// </returns>
         // GET: api/CoCreatorData/findCoCreator/5
         [ResponseType(typeof(CoCreatorDto))]
         [HttpGet]
@@ -53,10 +69,16 @@ namespace MuseLab7.Controllers
             return Ok(CoCreatorDto);
         }
 
-
+        /// <summary>
+        /// updates a cocreator
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="CoCreator"></param>
+        /// <returns>updated cocreator by id</returns>
         // Post: api/CoCreatorData/updateCoCreator/5
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateCoCreator(int id, CoCreator CoCreator)
         {
             if (!ModelState.IsValid)
@@ -99,6 +121,7 @@ namespace MuseLab7.Controllers
         // POST: api/CoCreatorData/addCoCreator
         [ResponseType(typeof(CoCreator))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddCoCreator(CoCreator CoCreator)
         {
             if (!ModelState.IsValid)
@@ -111,10 +134,15 @@ namespace MuseLab7.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = CoCreator.CoCreatorID }, CoCreator);
         }
-
+        /// <summary>
+        /// deletes a cocreator
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>to list adfter deleting slected cocreator by id</returns>
         // DELETE: api/CoCreatorData/DeleteCoCreator/5
         [ResponseType(typeof(CoCreator))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteCoCreator(int id)
         {
             CoCreator CoCreator = db.CoCreators.Find(id);

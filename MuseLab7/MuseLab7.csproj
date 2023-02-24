@@ -317,6 +317,7 @@
     <Content Include="Views\Creator\Error.cshtml" />
     <Content Include="Views\Creator\List.cshtml" />
     <Content Include="Views\Creator\New.cshtml" />
+    <Content Include="Views\Shared\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

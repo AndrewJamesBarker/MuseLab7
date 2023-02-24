@@ -5,11 +5,13 @@
 
 <h2>All Collabs</h2>
 <a href="/Collab/New">New Collab</a>
-@foreach (var collab in Model)
-{
-    <h2><a href="/Collab/Details/@collab.CollabID">@collab.CollabTitle</a></h2>
-    <div>CoCreater: @collab.CoCreatorName</div>
-    <div>Description: @collab.CollabDescription</div>
-    <div>Parent Idea: @collab.IdeaTitle</div>
-}
+<div class="flexContainer">
+    @foreach (var collab in Model)
+    {
+    <div class="listItem">
+        <h2><a href="/Collab/Details/@collab.CollabID">@collab.CollabTitle</a></h2>
+        <p>CoCreater: @collab.CoCreatorName</p>
+    </div>        
+    }
 
+</div>
